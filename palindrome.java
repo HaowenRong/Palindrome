@@ -4,12 +4,32 @@ public class Main {
   public static void main(String[] args){
     Scanner scanner = new Scanner(System.in);
     while(true) {
-      System.out.println("Enter a string");
-
+      System.out.println("Enter the function you would like to use [1: normal] [2: recursive] [q: quit]");
+      String selection = scanner.nextLine();
+      
+      if (selection.equals("q")) {
+        System.out.println("Quitting program");
+        break;
+      }
+      
+      if (!(selection.equals("1") || selection.equals("2"))) {
+        System.out.println("Invalid selection");
+        continue;
+      }
+      
+      System.out.println("Enter a string to check");
       String palindrome = scanner.nextLine();
-      System.out.printf("Is \"%s\" a palindrome? %b %n%n", palindrome, isPalindrome(palindrome));
-    }
+      
+      boolean isPalindrome;
+      
+      if (selection == "1") {
+        isPalindrome = isPalindrome(palindrome);
+      } else {
+        isPalindrome = isPalindromeRecursive(palindrome);
+      }
 
+      System.out.printf("Is \"%s\" a palindrome? %b %n%n", palindrome, isPalindrome);
+    }
   }
   private static boolean isPalindrome(String palindrome) {
     for (int i = 0; i < palindrome.length(); i++) {
