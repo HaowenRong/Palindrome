@@ -29,5 +29,31 @@ public class Main {
     }
     return true;
   }
+
+  private static boolean isPalindromeRecursive(String palindrome) {
+    int palindromeLength = palindrome.length();
+    
+    // if the length of the sliced string is in range of 0 - 1, return true
+    if (palindromeLength >= 0 && palindromeLength <= 1) {
+      return true;
+    }
+    
+    char currStartChar = palindrome.charAt(0);
+    char currEndChar   = palindrome.charAt(palindromeLength - 1);
+    
+    System.out.println(palindrome);
+    System.out.printf("%c | %c %n", currStartChar, currEndChar);
+    
+    // return false if either of the current chars are not the same
+    if (currStartChar != currEndChar) {
+      return false;
+    }
+    
+    // remove the first and last characters of the string and call function again using new string
+    String slicedPalindrome = palindrome.substring(1, palindrome.length() - 1);
+    isPalindromeRecursive(slicedPalindrome);
+    
+    return true;
+  }
 }
 
